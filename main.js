@@ -151,7 +151,17 @@ function cancelBtn() {
 }
 
 // コンピュータ思考
-function think() {
+// コンピュータ思考
+function think(difficulty) {
+  // Define thinking times (in milliseconds) for different difficulty levels
+  const thinkingTimes = {
+    easy: 3000,
+    medium: 2000,
+    hard: 1000
+  };
+
+  const thinkingTime = thinkingTimes[difficulty] || thinkingTimes.medium; // Default to medium difficulty
+
   game.classList.toggle("nonSelect");
   let nimSum = 0;
   for (let i = 0; i < quiz.length; i++) {
@@ -177,5 +187,9 @@ function think() {
     update();
     showTurn();
     game.classList.toggle("nonSelect");
-  }, 1500);
+  }, thinkingTime);
 }
+
+
+
+
