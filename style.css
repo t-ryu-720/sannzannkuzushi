@@ -110,7 +110,11 @@ body {
       margin: 5px 0;
     }
     .mountain {
-      height: 100px;
+      display: flex;
+  height: 100px;
+  align-items: center;
+  margin-bottom: 10px; /* 山同士の間隔 */
+}
     }
     .stone {
       width: 40px;
