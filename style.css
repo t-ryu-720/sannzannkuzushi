@@ -113,22 +113,25 @@ body {
       display: flex;
   height: 100px;
   align-items: center;
-  margin-bottom: 10px; /* 山同士の間隔 */
+  margin-bottom: 5px; /* 山同士の間隔を調整 */
 }
     }
     .stone {
       width: 40px;
-      height: 30px;
+      height: 40px;
       background-color: gray; /* 石の色を灰色に設定 */
-  border-radius: 50%; /* 石を丸くするための角丸 */
-  display: inline-block; /* インラインブロック要素に設定 */
+      border-radius: 50%; /* 石を丸くするための角丸 */
+      margin: 5px;
+      display: inline-block; /* インラインブロック要素に設定 */
     }
     h1 {
       margin: 10px 0;
+      text-align: center;
     }
     h2 {
       margin: 10px 0;
       padding: 0;
+      text-align: center;
     }
   
   

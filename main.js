@@ -171,7 +171,7 @@ function think(difficulty) {
     quiz[max]--;
     stones[max].childNodes[0].classList.add("clicked");
   } else {
-    for (let j = 0; j < quiz.length; j++) {
+    for (let j = 0; j < quiz.length; j++) { 
       if (quiz[j] > (quiz[j] ^ nimSum)) {
         for (let k = 0; k < quiz[j] - (quiz[j] ^ nimSum); k++) {
           stones[j].childNodes[k].classList.add("clicked");
@@ -188,7 +188,3 @@ function think(difficulty) {
     game.classList.toggle("nonSelect");
   }, thinkingTime);
 }
-
-
-
-
