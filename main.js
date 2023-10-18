@@ -151,7 +151,6 @@ function cancelBtn() {
 }
 
 // コンピュータ思考
-// コンピュータ思考
 function think(difficulty) {
   // Define thinking times (in milliseconds) for different difficulty levels
   const thinkingTimes = {

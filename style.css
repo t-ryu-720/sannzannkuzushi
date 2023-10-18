@@ -67,7 +67,7 @@ body {
     display: none;
   }
   .clicked {
-    background: pink;
+    background: black;
     pointer-events: none;
   }
   .select {
@@ -93,8 +93,8 @@ body {
     cursor: pointer;
   }
   .back {
-    background: blueviolet;
-    color: white;
+    background: blue;
+    color: black;
     cursor: pointer;
   }
   
@@ -119,6 +119,9 @@ body {
     .stone {
       width: 40px;
       height: 30px;
+      background-color: gray; /* 石の色を灰色に設定 */
+  border-radius: 50%; /* 石を丸くするための角丸 */
+  display: inline-block; /* インラインブロック要素に設定 */
     }
     h1 {
       margin: 10px 0;
