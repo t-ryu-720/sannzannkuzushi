@@ -19,6 +19,7 @@ function update() {
   for (let i = 0; i < level; i++) {
     stones[i].innerHTML = "";
     stones[i].className = "stones";
+    //各山の石の数に応じて石を表示
     for (let j = 0; j < quiz[i]; j++) {
       const stone = document.createElement("div");
       stone.className = "stone";
@@ -26,47 +27,50 @@ function update() {
       stones[i].appendChild(stone);
     }
   }
+  // 残りの石の数を表示
   remainingNum.forEach((value, index) => {
     value.textContent = quiz[index];
   });
 }
 
 // 手番選択画面
-function selectTuan() {
+function showTurnSelection() {
   game.classList.toggle("nonSelect");
   h2.textContent = "手番を選択してください";
   take.textContent = "先手";
-  take.addEventListener("click", select);
+  take.addEventListener("click", handleTurnSelection);
   cancel.textContent = "後手";
-  cancel.addEventListener("click", select);
+  cancel.addEventListener("click", handleTurnSelection);
 }
 // 手番が選択された時の処理
-function select(e) {
+function handleTurnSelection(e) {
   if (e.target.textContent === "後手") {
     turn = !turn;
   }
   game.classList.toggle("nonSelect");
   showTurn();
-  take.removeEventListener("click", select);
-  cancel.removeEventListener("click", select);
+  take.removeEventListener("click", handleTurnSelection );
+  cancel.removeEventListener("click", handleTurnSelection);
   take.textContent = "とる";
   cancel.textContent = "とりけし";
   take.addEventListener("click", takeStone);
-  cancel.addEventListener("click", cancelBtn);
+  cancel.addEventListener("click", cancelAction);
 }
 
+// 初期化およびゲーム開始
+function initializeGame() {
 update();
 selectTuan();
+}
+
+// 初期化およびゲーム開始を呼び出し
+initializeGame();
 
 // 勝敗判定
-function win() {
-  let winArr = Array(level);
-  winArr.fill(0);
-  if (winArr.toString() === quiz.toString()) {
-    return true;
-  } else {
-    return false;
-  }
+function iswin() {
+  // 各山の石の数を合計して判定する
+  const totalStones = quiz.reduce((sum, stones) => sum + stones, 0);
+  return totalStones === 0;
 }
 
 // 問題作成
