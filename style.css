@@ -1,137 +1,143 @@
 body {
-    user-select: none;
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
-      "Hiragino Sans", Meiryo, sans-serif;
-  }
-  main {
-    width: 700px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  /* game */
-  h1 {
-    text-align: center;
-  }
-  .remaining {
-    width: 120px;
-    margin: 0 0 0 15px;
-    padding: 5px;
-    border: solid 1px black;
-    text-align: center;
-  }
-  h2 {
-    text-align: center;
-    padding: 10px;
-  }
-  #game {
-    margin: 5px 25px;
-    text-align: center;
-  }
-  .mountain {
-    display: flex;
-    height: 75px;
-    align-items: center;
-  }
-  .remainingNum {
-    right: 0px;
-    margin: 5px;
-    padding: 5px;
-    width: 45px;
-    flex: 0 0 auto;
-    height: 45px;
-    line-height: 50px;
-    font-size: 24px;
-    font-weight: bold;
-    border: solid 1px black;
-    border-radius: 3px;
-    background: darkblue;
-    color: white;
-  }
-  .stones {
-    display: flex;
-    margin-top: 5px;
-    border: solid 3px white;
-  }
-  .stone {
-    width: 50px;
-    height: 40px;
-    background: rgb(36, 124, 206);
-    margin: 5px;
-    padding: 2px;
-    border-radius: 8px;
-    line-height: 40px;
-    cursor: pointer;
-  }
-  .hide {
-    display: none;
-  }
-  .clicked {
-    background: black;
-    pointer-events: none;
-  }
-  .select {
-    border-radius: 5px;
-  }
-  .nonSelect {
-    pointer-events: none;
-  }
-  #btn {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-  }
-  #take,
-  #cancel {
-    width: 100px;
-    height: 50px;
-    background: darkblue;
-    color: white;
-    line-height: 50px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .back {
-    background: blue;
-    color: black;
-    cursor: pointer;
-  }
-  
-  /* スマートフォン・タブレット */
-  @media only screen and (max-width: 750px) {
-    main {
-      width: 350px;
-    }
-    .stones {
-      flex-wrap: wrap;
-    }
-    #game {
-      margin: 5px 0;
-    }
-    .mountain {
-      display: flex;
-  height: 100px;
-  align-items: center;
-  margin-bottom: 5px; /* 山同士の間隔を調整 */
+  user-select: none;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
-    }
-    .stone {
+
+main {
+  width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Game Section */
+h1, h2 {
+  text-align: center;
+}
+
+.remaining {
+  width: 120px;
+  margin: 0 0 0 15px;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#game {
+  margin: 5px 25px;
+  text-align: center;
+}
+
+.mountain {
+  display: flex;
+  height: 75px;
+  align-items: center;
+}
+
+.remainingNum {
+  right: 0px;
+  margin: 5px;
+  padding: 5px;
+  width: 45px;
+  flex: 0 0 auto;
+  height: 45px;
+  line-height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 3px;
+  background: darkblue;
+  color: white;
+}
+
+.stones {
+  display: flex;
+  margin-top: 5px;
+  border: 3px solid white;
+}
+
+.stone {
+  width: 50px;
+  height: 40px;
+  background: rgb(36, 124, 206);
+  margin: 5px;
+  padding: 2px;
+  border-radius: 8px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.clicked {
+  background: black;
+  pointer-events: none;
+}
+
+.select {
+  border-radius: 5px;
+}
+
+.nonSelect {
+  pointer-events: none;
+}
+
+#btn {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#take, #cancel {
+  width: 100px;
+  height: 50px;
+  background: darkblue;
+  color: white;
+  line-height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back {
+  background: blue;
+  color: black;
+  cursor: pointer;
+}
+
+/* Smartphone and Tablet Styles */
+@media only screen and (max-width: 750px) {
+  main {
+      width: 350px;
+  }
+
+  .stones {
+      flex-wrap: wrap;
+  }
+
+  #game {
+      margin: 5px 0;
+  }
+
+  .mountain {
+      display: flex;
+      height: 100px;
+      align-items: center;
+      margin-bottom: 5px;
+  }
+
+  .stone {
       width: 40px;
       height: 40px;
-      background-color: gray; /* 石の色を灰色に設定 */
-      border-radius: 50%; /* 石を丸くするための角丸 */
+      background-color: gray;
+      border-radius: 50%;
       margin: 5px;
-      display: inline-block; /* インラインブロック要素に設定 */
-    }
-    h1 {
+      display: inline-block;
+  }
+
+  h1, h2 {
       margin: 10px 0;
       text-align: center;
-    }
-    h2 {
-      margin: 10px 0;
-      padding: 0;
-      text-align: center;
-    }
-  
-  
+  }
+}
