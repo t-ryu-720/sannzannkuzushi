@@ -19,7 +19,6 @@ function update() {
   for (let i = 0; i < level; i++) {
     stones[i].innerHTML = "";
     stones[i].className = "stones";
-    //各山の石の数に応じて石を表示
     for (let j = 0; j < quiz[i]; j++) {
       const stone = document.createElement("div");
       stone.className = "stone";
@@ -27,50 +26,47 @@ function update() {
       stones[i].appendChild(stone);
     }
   }
-  // 残りの石の数を表示
   remainingNum.forEach((value, index) => {
     value.textContent = quiz[index];
   });
 }
 
 // 手番選択画面
-function showTurnSelection() {
+function selectTuan() {
   game.classList.toggle("nonSelect");
   h2.textContent = "手番を選択してください";
   take.textContent = "先手";
-  take.addEventListener("click", handleTurnSelection);
+  take.addEventListener("click", select);
   cancel.textContent = "後手";
-  cancel.addEventListener("click", handleTurnSelection);
+  cancel.addEventListener("click", select);
 }
 // 手番が選択された時の処理
-function handleTurnSelection(e) {
+function select(e) {
   if (e.target.textContent === "後手") {
     turn = !turn;
   }
   game.classList.toggle("nonSelect");
   showTurn();
-  take.removeEventListener("click", handleTurnSelection );
-  cancel.removeEventListener("click", handleTurnSelection);
+  take.removeEventListener("click", select);
+  cancel.removeEventListener("click", select);
   take.textContent = "とる";
   cancel.textContent = "とりけし";
   take.addEventListener("click", takeStone);
-  cancel.addEventListener("click", cancelAction);
+  cancel.addEventListener("click", cancelBtn);
 }
 
-// 初期化およびゲーム開始
-function initializeGame() {
 update();
 selectTuan();
-}
-
-// 初期化およびゲーム開始を呼び出し
-initializeGame();
 
 // 勝敗判定
-function iswin() {
-  // 各山の石の数を合計して判定する
-  const totalStones = quiz.reduce((sum, stones) => sum + stones, 0);
-  return totalStones === 0;
+function win() {
+  let winArr = Array(level);
+  winArr.fill(0);
+  if (winArr.toString() === quiz.toString()) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // 問題作成
@@ -155,16 +151,7 @@ function cancelBtn() {
 }
 
 // コンピュータ思考
-function think(difficulty) {
-  // Define thinking times (in milliseconds) for different difficulty levels
-  const thinkingTimes = {
-    easy: 3000,
-    medium: 2000,
-    hard: 1000
-  };
-
-  const thinkingTime = thinkingTimes[difficulty] || thinkingTimes.medium; // Default to medium difficulty
-
+function think() {
   game.classList.toggle("nonSelect");
   let nimSum = 0;
   for (let i = 0; i < quiz.length; i++) {
@@ -175,7 +162,7 @@ function think(difficulty) {
     quiz[max]--;
     stones[max].childNodes[0].classList.add("clicked");
   } else {
-    for (let j = 0; j < quiz.length; j++) { 
+    for (let j = 0; j < quiz.length; j++) {
       if (quiz[j] > (quiz[j] ^ nimSum)) {
         for (let k = 0; k < quiz[j] - (quiz[j] ^ nimSum); k++) {
           stones[j].childNodes[k].classList.add("clicked");
@@ -190,5 +177,5 @@ function think(difficulty) {
     update();
     showTurn();
     game.classList.toggle("nonSelect");
-  }, thinkingTime);
+  }, 1500);
 }
