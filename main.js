@@ -172,10 +172,43 @@ function think() {
       }
     }
   }
-  setTimeout(() => {
-    turn = !turn;
-    update();
-    showTurn();
+  
+  function think() {
     game.classList.toggle("nonSelect");
-  }, 1500);
+    
+    // Simulate "thinking" with a delay
+    simulateThinking()
+      .then(() => {
+        turn = !turn;
+        update();
+        showTurn();
+        game.classList.toggle("nonSelect");
+      });
+  }
+  
+  function simulateThinking() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // Select a random non-empty pile
+        let nonEmptyPiles = quiz
+          .map((count, index) => (count > 0 ? index : -1))
+          .filter((index) => index !== -1);
+  
+        let selectedPile = nonEmptyPiles[Math.floor(Math.random() * nonEmptyPiles.length)];
+        let stonesToTake = Math.min(quiz[selectedPile], Math.floor(Math.random() * quiz[selectedPile]) + 1);
+  
+        for (let i = 0; i < stonesToTake; i++) {
+          stones[selectedPile].childNodes[i].classList.add("clicked");
+        }
+        quiz[selectedPile] -= stonesToTake;
+  
+        resolve(); // Resolve the promise to continue the game
+      }, 10); // Adjust the delay time here (in milliseconds)
+    });
+  }
 }
+  
+  
+  
+  
+  

@@ -117,7 +117,9 @@ h1, h2 {
   }
 
   #game {
-      margin: 5px 0;
+    margin: 5px 25px;
+    text-align: center;
+    perspective: 1000px; /* Add perspective to create a 3D effect */
   }
 
   /* Game Result Styles */
@@ -154,21 +156,23 @@ h1, h2 {
   }
 }
 
-  .mountain {
-      display: flex;
-      height: 100px;
-      align-items: center;
-      margin-bottom: 5px;
-  }
+.mountain {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  margin-bottom: 5px;
+  transform: perspective(1000px) rotateX(20deg); /* Add a perspective and rotation */
+}
 
-  .stone {
-      width: 40px;
-      height: 40px;
-      background-color: gray;
-      border-radius: 50%;
-      margin: 5px;
-      display: inline-block;
-  }
+.stone {
+  width: 40px;
+  height: 40px;
+  background-color: gray;
+  border-radius: 50%;
+  margin: 5px;
+  display: inline-block;
+  transform: rotateY(45deg); /* Add a rotation for a 3D effect */
+}
 
   h1, h2 {
       margin: 10px 0;
