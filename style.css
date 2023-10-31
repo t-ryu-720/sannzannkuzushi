@@ -10,10 +10,15 @@ main {
 }
 
 /* Game Section */
-h1, h2 {
+#game {
+  margin: 5px 25px;
   text-align: center;
+  background-image: url('path/to/your/flowery-background-image.jpg'); /* Set the path to your image */
+  background-size: cover; /* Scale the background image to cover the entire container */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-position: center; /* Center the image horizontally and vertically */
+  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background to improve text readability */
 }
-
 .remaining {
   width: 120px;
   margin: 0 0 0 15px;
@@ -122,17 +127,14 @@ h1, h2 {
     perspective: 1000px; /* Add perspective to create a 3D effect */
   }
 
-  /* Game Result Styles */
+/* Result Styles for Smaller Screens */
 #result {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  position: static;
+  transform: none;
 }
 
 #result-text {
-  font-size: 36px;
+  font-size: 50px; /* Increase the font size */
   font-weight: bold;
   background: rgba(0, 0, 0, 0.7);
   color: white;

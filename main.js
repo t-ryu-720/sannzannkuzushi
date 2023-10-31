@@ -32,7 +32,7 @@ function update() {
 }
 
 // 手番選択画面
-function selectTuan() {
+function selectTurn() {
   game.classList.toggle("nonSelect");
   h2.textContent = "手番を選択してください";
   take.textContent = "先手";
@@ -40,6 +40,7 @@ function selectTuan() {
   cancel.textContent = "後手";
   cancel.addEventListener("click", select);
 }
+
 // 手番が選択された時の処理
 function select(e) {
   if (e.target.textContent === "後手") {
@@ -56,7 +57,7 @@ function select(e) {
 }
 
 update();
-selectTuan();
+selectTurn();
 
 // 勝敗判定
 function win() {
@@ -153,60 +154,59 @@ function cancelBtn() {
 // コンピュータ思考
 function think() {
   game.classList.toggle("nonSelect");
-  let nimSum = 0;
-  for (let i = 0; i < quiz.length; i++) {
-    nimSum ^= quiz[i];
-  }
-  if (nimSum === 0) {
-    let max = quiz.indexOf(Math.max(...quiz));
-    quiz[max]--;
-    stones[max].childNodes[0].classList.add("clicked");
-  } else {
-    for (let j = 0; j < quiz.length; j++) {
-      if (quiz[j] > (quiz[j] ^ nimSum)) {
-        for (let k = 0; k < quiz[j] - (quiz[j] ^ nimSum); k++) {
-          stones[j].childNodes[k].classList.add("clicked");
-        }
-        quiz[j] = quiz[j] ^ nimSum;
-        break;
-      }
-    }
-  }
-  
-  function think() {
-    game.classList.toggle("nonSelect");
-    
-    // Simulate "thinking" with a delay
-    simulateThinking()
-      .then(() => {
-        turn = !turn;
-        update();
-        showTurn();
-        game.classList.toggle("nonSelect");
-      });
-  }
-  
-  function simulateThinking() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // Select a random non-empty pile
-        let nonEmptyPiles = quiz
-          .map((count, index) => (count > 0 ? index : -1))
-          .filter((index) => index !== -1);
-  
-        let selectedPile = nonEmptyPiles[Math.floor(Math.random() * nonEmptyPiles.length)];
-        let stonesToTake = Math.min(quiz[selectedPile], Math.floor(Math.random() * quiz[selectedPile]) + 1);
-  
-        for (let i = 0; i < stonesToTake; i++) {
-          stones[selectedPile].childNodes[i].classList.add("clicked");
-        }
-        quiz[selectedPile] -= stonesToTake;
-  
-        resolve(); // Resolve the promise to continue the game
-      }, 10); // Adjust the delay time here (in milliseconds)
+  // Simulate "thinking" with a delay
+  simulateThinking()
+    .then(() => {
+      turn = !turn;
+      update();
+      showTurn();
+      game.classList.toggle("nonSelect");
     });
-  }
 }
+
+function simulateThinking() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Implement your computer's strategy for selecting stones here
+      // For example, select a random pile and a random number of stones to take
+      let selectedPile = Math.floor(Math.random() * level);
+      let stonesToTake = Math.floor(Math.random() * quiz[selectedPile]) + 1;
+
+      // Update the game state and display
+      for (let i = 0; i < stonesToTake; i++) {
+        stones[selectedPile].childNodes[i].classList.add("clicked");
+      }
+      quiz[selectedPile] -= stonesToTake;
+
+      resolve(); // Resolve the promise to continue the game
+    }, 1000); // Adjust the delay time here (in milliseconds)
+  });
+}
+
+const bgm = document.getElementById("bgm");
+
+function playBGM() {
+  bgm.play();
+}
+
+function pauseBGM() {
+  bgm.pause();
+}
+
+function muteBGM() {
+  bgm.muted = true;
+}
+
+function unmuteBGM() {
+  bgm.muted = false;
+}
+
+// Start playing the BGM when the game loads
+playBGM();
+
+
+
+
   
   
   
