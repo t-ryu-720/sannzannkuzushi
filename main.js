@@ -64,9 +64,38 @@ function win() {
   let winArr = Array(level);
   winArr.fill(0);
   if (winArr.toString() === quiz.toString()) {
-    return true;
+    return true; // すべての石が取られた場合、ゲームは終了
   } else {
     return false;
+  }
+}
+
+// Game Over を表示するための関数
+function showGameOverMessage() {
+  h2.textContent = "Game Over";
+  h2.classList.add("back");
+  cancel.style.display = "none";
+  take.style.display = "none";
+  h2.addEventListener("click", () => {
+    location.reload(); // クリックでゲームをリロード
+  });
+}
+
+// 手番・勝敗表示
+function showTurn() {
+  let judge = win();
+  if (judge) {
+    showGameOverMessage(); // ゲームが終了したら Game Over を表示
+    return;
+  }
+  // 以下のコードは手番の表示を行います
+  if (turn) {
+    h1.textContent = "あなたの番です";
+    h2.textContent = "取りたい石をクリックしてとるボタンを押してください";
+  } else {
+    h1.textContent = "コンピュータの番です";
+    h2.textContent = "コンピュータ考え中....";
+    think();
   }
 }
 
