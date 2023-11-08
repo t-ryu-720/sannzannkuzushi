@@ -233,11 +233,31 @@ function unmuteBGM() {
 // Start playing the BGM when the game loads
 playBGM();
 
+const timerElement = document.getElementById("timer");
+let remainingTime = 60; // Set the initial remaining time in seconds
+
+function updateTimer() {
+  if (remainingTime <= 0) {
+    // Handle timeout or end of the turn here
+    // For example, end the player's turn or make the computer's move
+    if (turn) {
+      // Player's turn ended, handle it here
+      // ...
+    } else {
+      // Computer's "thinking" time ended, handle it here
+      // ...
+    }
+  } else {
+    timerElement.textContent = `Remaining Time: ${remainingTime} minutes`;
+    remainingTime--;
+    setTimeout(updateTimer, 1000); // Update the timer every second
+  }
+}
+
+// Call the function to start the timer when the game loads
+updateTimer();
 
 
 
-  
-  
-  
-  
-  
+
+
