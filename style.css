@@ -122,9 +122,10 @@ main {
   }
 
   #game {
-    margin: 5px 25px;
-    text-align: center;
-    perspective: 1000px; /* Add perspective to create a 3D effect */
+    background-image: url('path/to/your/flowery-background-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
 /* Result Styles for Smaller Screens */
