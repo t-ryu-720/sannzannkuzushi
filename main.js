@@ -118,15 +118,11 @@ function makeNumber(array) {
 function showTurn() {
   let judge = win();
   if (judge) {
-    if (!turn) {
-      h1.textContent = "WIN!!";
-      end();
-    } else {
-      h1.textContent = "GAMEOVER...";
-      end();
-    }
+    end(); // Handle the end of the game
     return;
   }
+
+  // 以下のコードは手番の表示を行います
   if (turn) {
     h1.textContent = "あなたの番です";
     h2.textContent = "取りたい石をクリックしてとるボタンを押してください";
@@ -138,6 +134,12 @@ function showTurn() {
 
 // ゲーム終了画面
 function end() {
+  if (!turn) {
+    h1.textContent = "WIN!!";
+  } else {
+    h1.textContent = "GAMEOVER...";
+  }
+
   h2.textContent = "スタート画面に戻る";
   h2.classList.add("back");
   cancel.style.display = "none";
