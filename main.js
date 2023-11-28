@@ -13,6 +13,9 @@ const cancel = document.getElementById("cancel");
 const take = document.getElementById("take");
 const game = document.getElementById("game");
 
+// Adjustable timer duration (in seconds)
+let initialTime = 2;
+let remainingTime = initialTime;
 // 表示更新
 function update() {
   // 残りの個数表示
@@ -94,7 +97,6 @@ function showTurn() {
     h2.textContent = "取りたい石をクリックしてとるボタンを押してください";
   } else {
     h1.textContent = "コンピュータの番です";
-    h2.textContent = "コンピュータ考え中....";
     think();
   }
 }
@@ -117,10 +119,10 @@ function showTurn() {
   let judge = win();
   if (judge) {
     if (!turn) {
-      h1.textContent = "あなたの勝ちです!!";
+      h1.textContent = "WIN!!";
       end();
     } else {
-      h1.textContent = "あなたの負けです...";
+      h1.textContent = "GAMEOVER...";
       end();
     }
     return;
@@ -130,7 +132,6 @@ function showTurn() {
     h2.textContent = "取りたい石をクリックしてとるボタンを押してください";
   } else {
     h1.textContent = "コンピュータの番です";
-    h2.textContent = "コンピュータ考え中....";
     think();
   }
 }
@@ -167,9 +168,15 @@ function takeStone() {
       remainingNum.forEach((value, index) => {
         quiz[index] = Number(value.textContent);
       });
-      turn = !turn;
-      update();
-      showTurn();
+      
+      if (win()) {
+        showGameOverMessage();
+      } else {
+        turn = !turn;
+        update();
+        showTurn();
+      }
+      
       return;
     }
   });
@@ -233,8 +240,7 @@ function unmuteBGM() {
 // Start playing the BGM when the game loads
 playBGM();
 
-const timerElement = document.getElementById("timer");
-let remainingTime = 60; // Set the initial remaining time in seconds
+
 
 function updateTimer() {
   if (remainingTime <= 0) {
@@ -254,8 +260,6 @@ function updateTimer() {
   }
 }
 
-// Call the function to start the timer when the game loads
-updateTimer();
 
 
 
